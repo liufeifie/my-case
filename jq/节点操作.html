@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉列表切换</title>
+    <style>
+        div {
+            background: cadetblue;
+            width: 500px;
+            height: 300px;
+        }
+
+        select {
+            width: 100px;
+            margin: 50px 50px;
+            float: left;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 20px;
+        }
+        input{
+            position: relative;
+            left: -220px;
+            height: 26px;
+            width: 50px;
+            font-size: 20px;
+        }
+        div>:nth-child(3){
+            top:90px;
+        }
+        div>:nth-child(4){
+            top:100px;
+        }
+        div>:nth-child(5){
+            top:110px;
+        }
+        div>:nth-child(6){
+            top:120px;
+        }
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script>
+        function leftMove(){
+           $("#sec1 option:selected").remove().appendTo($("#sec2"));
+        }
+        function allMove1(){
+            $("#sec1 option").remove().appendTo($("#sec2"));
+        }
+        function rightMove(){
+            $("#sec2 option:selected").remove().appendTo($("#sec1"));
+        }
+        function allMove2(){
+            $("#sec2 option").remove().appendTo($("#sec1"));
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <select name="xia1" id="sec1" size="8">
+        <option>选项1</option>
+        <option>选项2</option>
+        <option>选项3</option>
+        <option>选项4</option>
+        <option>选项5</option>
+        <option>选项6</option>
+    </select>
+    <select name="xia1" id="sec2" size="8">
+        <option>选项7</option>
+        <option>选项8</option>
+        <option>选项9</option>
+        <option>选项10</option>
+        <option>选项11</option>
+        <option>选项12</option>
+    </select>
+    <input type="button" value="-->" onclick="leftMove()">
+    <input type="button" value="==>" onclick="allMove1()">
+    <input type="button" value="<--" onclick="rightMove()">
+    <input type="button" value="<==" onclick="allMove2()">
+</div>
+</body>
+</html>

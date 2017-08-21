@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            padding: 5px;
+            border: 1px solid grey;
+            box-shadow: inset 3px 3px 3px #efefef;
+            margin: 10%;
+        }
+
+        .box, .container {
+            width: 400px;
+            height: 400px;
+        }
+
+        .box {
+            position: relative;
+        }
+
+        .moveBox {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid greenyellow;
+            display: none;
+        }
+
+        .img {
+            height: 400px;
+            width: 400px;
+            border: 1px solid grey;
+            position: absolute;
+            left: 500px;
+            top: 0;
+            overflow: hidden;
+            display: none;
+        }
+        .moveImg{
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <img src="img/img02.jpg" width="400"><!--a展示图片-->
+        <div class="moveBox"></div><!--b移动框-->
+        <div class="img"><!--c隐藏图片容器-->
+            <img src="img/img02.jpg" width="800" class="moveImg"><!--d隐藏大图片-->
+        </div>
+    </div>
+    <!--规律宽高：a/b=d/c -->
+</div>
+<script>
+    var box = document.querySelector('.box');
+    var moveBox = document.querySelector('.moveBox');
+    var img = document.querySelector('.img');
+    var moveImg = document.querySelector('.moveImg');
+    box.onmouseover = function () {
+        moveBox.style.display = 'block';
+        img.style.display = 'block';
+    };
+    box.onmouseout = function () {
+        moveBox.style.display = 'none';
+        img.style.display = 'none';
+    };
+    box.onmousemove = function (evt) {
+        var clientx = evt.clientX;
+        var clienty = evt.clientY;
+        var boxx = box.offsetLeft;
+        var boxy = box.offsetTop;
+        var left = clientx - boxx - moveBox.offsetWidth / 2;
+        var top = clienty - boxy - moveBox.offsetHeight / 2;
+        if (left <= 0) {
+            left = 0;
+        } else if (left >= box.offsetWidth - moveBox.offsetWidth) {
+            left = box.offsetWidth - moveBox.offsetWidth;
+        }
+        if (top <= 0) {
+            top = 0;
+        } else if (top >= box.offsetHeight - moveBox.offsetHeight) {
+            top = box.offsetHeight - moveBox.offsetHeight;
+        }
+        moveBox.style.left = left + 'px';
+        moveBox.style.top = top + 'px';
+        //移动比例
+        var i = left / (box.offsetWidth - moveBox.offsetWidth);
+        var j = top / (box.offsetHeight - moveBox.offsetHeight);
+        //大图片位置
+        moveImg.style.left=-(moveImg.offsetWidth-img.offsetWidth)*i+'px';
+        moveImg.style.top=-(moveImg.offsetHeight-img.offsetHeight)*j+'px';
+    };
+</script>
+</body>
+</html>

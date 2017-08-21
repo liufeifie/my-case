@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin: 0px;padding: 0px}/*外边距；内边距*/
+        #adv ul{list-style: none}
+        #adv{
+
+            width: 325px;/*宽度*/
+            height: 190px;/*高度*/
+            margin: 0 auto;/*外边距：上下0  左右自动*/
+            position: relative;/*位置：相对的*/
+            overflow: hidden; /*超出容器部分隐藏，其实是存在的---溢出：隐藏*/
+        }
+        #advImg img {border: 0;
+            width: 325px;/*宽度*/
+            height: 190px;/*高度*/}
+        #adv #advIcon{
+            position: absolute;/*相对父容器---位置：绝对*/
+            right: 2px;/*右边*/
+            bottom: 5px;/*底部*/
+        }
+        #adv #advIcon li{
+            float: left;/*数字向左浮动---浮动：左*/
+            border: 2px green solid;
+            padding: 8px;
+            margin-right: 3px;
+            background: #cccccc;
+            color: blue;
+            font-weight: bold;/*字体-重量：粗体*/
+        }
+        /*切换的时候图标用的样式*/
+        #adv #advIcon li.bg{
+            border: 2px solid blue;
+            background: pink;
+            color: white;
+        }
+    </style>
+    <script type="text/javascript">
+        var $icons;
+        var $imgs;
+        var timer=null;
+        var curr = 0;
+        window.onload = function () {
+            $icons = document.getElementById("advIcon").getElementsByTagName("li");
+            //找到 advicon 下的 li,保存了1，2，3，4
+            $imgs = document.getElementById("advImg").getElementsByTagName("li");
+            //找到 advimg 下的 li
+            for (var i = 0; i < $icons.length; i++) {
+                // 进行循环 最大值是 advicon  下的  li 的长度
+                sp_img_show(curr);
+                //把curr值赋给下方的函数sp_img_show
+                if(timer==null) {
+                    //进行判断 timer是否等于null（空）
+                    timer = window.setInterval("sp_img_show()", 1000);//开启定时器
+                }
+                $icons[i].onmouseover = function () {
+                    //当鼠标移入 按钮的时候执行函数
+                    if(timer!=null) {
+                        clearInterval(timer);
+                        //清除定时器
+                        /*timer=null;*/
+                        //赋值为空
+                    }
+                    sp_img_show(this.innerHTML - 1);
+                    //执行函数sp_img_show
+                };
+                $icons[i].onmouseout = function () {
+                    //鼠标移出按钮 执行函数
+                    timer = window.setInterval("sp_img_show()", 1000);
+                    //开启定时器
+                }
+            }
+        };
+        function sp_img_show(index) {   //0
+            if (index == undefined) {
+                curr++;
+            } else {
+                curr = index;
+            }
+            if (curr > $imgs.length - 1) {
+                curr = 0;
+            }
+            for (var i = 0; i < $imgs.length; i++) {
+                if (curr == i) {
+                    $imgs[curr].style.display = "block";
+                    $icons[curr].className = "bg";
+                } else {
+                    $imgs[i].style.display = "none";
+                    $icons[i].className = "";
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="adv">
+    <ul id="advImg">
+        <li><a href="#"><img src="img/1.jpg"/></a></li>
+        <li><a href="#"><img src="img/2.jpg"/></a></li>
+        <li><a href="#"><img src="img/3.jpg"/></a></li>
+        <li><a href="#"><img src="img/4.jpg"/></a></li>
+    </ul>
+    <ul id="advIcon">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</div>
+</body>
+</html>

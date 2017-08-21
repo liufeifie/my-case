@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画3</title>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            background: orange;
+            margin: 10% auto;
+        }
+        p, h1, h3,div,h2 {
+            border-radius: 50%;
+            position: relative;
+            transform: rotate(0deg);
+
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-delay: 1s;
+        }
+        p {
+            width: 200px;
+            height: 20px;
+            background: red;
+            left: 0;
+            top: 90px;
+            animation-name: hour;
+            animation-duration: 30s;
+            transform-origin: 200px 10px; /*旋转轴*/
+           /* animation-play-state: paused;!*zhanting*!*/
+
+        }
+        @keyframes hour {
+            0% {
+                background: red;
+                transform: rotate(0deg)
+            }
+            25% {
+                background: darkblue;
+                transform: rotate(90deg)
+            }
+            50% {
+                background: yellow;
+                transform: rotate(180deg)
+            }
+            75% {
+                background: yellow;
+                transform: rotate(270deg)
+            }
+            100% {
+                background: red;
+                transform: rotate(360deg)
+            }
+        }
+        h1 {
+            width: 20px;
+            height: 190px;
+            background: blue;
+            left: 190px;
+            top: 60px;
+            transform-origin: 10px 0px; /*旋转轴*/
+            animation-name: second;
+            animation-duration: 1s;
+             /* animation-play-state: paused; !*zhanting*!*/
+        }
+        @keyframes second {
+            0% {
+                background: blue;
+                transform: rotate(0deg)
+            }
+            25% {
+                background: #2f8b36;
+                transform: rotate(90deg)
+            }
+            50% {
+                background: #ffb43b;
+                transform: rotate(180deg)
+            }
+            75% {
+                background: #88ffd6;
+                transform: rotate(270deg)
+            }
+            100% {
+                background: #5a94ff;
+                transform: rotate(360deg)
+            }
+        }
+        h3 {
+            width: 200px;
+            height: 20px;
+            background: yellow;
+            left: 200px;
+            top: 130px;
+            transform-origin: 0px 10px; /*旋转轴*/
+            animation-name: minute;
+            animation-duration: 5s;
+             /*animation-play-state: paused; !*zhanting*!*/
+        }
+        @keyframes minute {
+            0% {
+                background: #fdff2b;
+                transform: rotate(0deg)
+            }
+            25% {
+                background: #178b24;
+                transform: rotate(90deg)
+            }
+            50% {
+                background: #2331ff;
+                transform: rotate(180deg)
+            }
+            75% {
+                background: #62ff72;
+                transform: rotate(270deg)
+            }
+            100% {
+                background: yellow;
+                transform: rotate(360deg)
+            }
+        }
+
+        p:hover, h1:hover ,h3:hover{
+            animation-play-state: paused;
+        }
+
+        h2 {
+            width: 40px;
+            height: 40px;
+            left: 180px;
+            top: 180px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2></h2>
+    <h3>&nbsp;&nbsp;&nbsp;m</h3>
+    <p>hour</p>
+    <h1>s</h1>
+</div>
+</body>
+</html>
