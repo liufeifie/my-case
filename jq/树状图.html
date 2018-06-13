@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>树状图</title>
+    <style>
+        .in {
+            display: none;
+        }
+        .out{
+            cursor: pointer;
+        }
+        ul{
+            list-style-image: url("+.gif");
+        }
+    </style>
+    <script src="../jquery-2.2.4.js"></script>
+    <script>
+        $(function () {
+            $(".out").click(function(){
+                //$(this).children().toggle();
+               // alert($(this).children(".in").is(":hidden"));
+               if($(this).children(".in").is(":hidden")){//:visible
+                   $(this).css("list-style-image"," url('-.gif')");
+                   $(this).children().show();
+               }else {
+                   $(this).css("list-style-image"," url('+.gif')");
+                   $(this).children().hide();
+               }
+            });
+        });
+    </script>
+</head>
+<body>
+<ul >
+    <li class="out">
+       西游记
+        <ul class="in">
+            <li>唐僧</li>
+            <li>孙悟空</li>
+            <li>猪悟能</li>
+            <li>沙悟净</li>
+        </ul>
+    </li>
+    <li class="out">
+        红楼梦
+        <ul class="in">
+            <li>林黛玉</li>
+            <li>贾宝玉</li>
+            <li>宝钗</li>
+            <li>王熙凤</li>
+        </ul>
+    </li>
+    <li class="out">
+        三国演义
+        <ul class="in">
+            <li>曹操</li>
+            <li>刘备</li>
+            <li>孙权</li>
+            <li>诸葛亮</li>
+        </ul>
+    </li>
+    <li class="out">
+        水浒传
+        <ul class="in">
+            <li>林冲</li>
+            <li>武松</li>
+            <li>宋江</li>
+            <li>燕青</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一周内不用登录</title>
+    <script src="tools.js"></script>
+    <style>
+        .UIA{
+            border: 1px solid red;
+            padding: 10px 15px;
+            width: 20%;
+            text-align: center;
+        }
+        .UIB{
+            width: 20%;
+            padding: 10px 15px;
+            border: 1px solid green;
+            display: none;
+        }
+        .UIB span{
+            display: inline-block;
+            width: 100px;
+            height: 22px;
+        }
+        input{
+            padding: 3px 5px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="UIA">
+    <input type="text" id="username"><span style="color:red" id="tip"></span><br>
+    <input type="checkbox" id="choice"><label for="choice">一周内不用登录</label>
+    <button id="submitBtn">提交</button>
+</div>
+<div class="UIB">
+    用户名:<span id="member"></span>
+   <button id="logout"></button>
+</div>
+<script>
+   var username=document.querySelector('#username');
+   var choice=document.querySelector('#choice');
+   var choice1=document.querySelector('#choice1');
+   var member=document.querySelector('#member');
+   var logout=document.querySelector('#logout');
+   var submitBtn=document.querySelector('#submitBtn');
+   var tip=document.querySelector('#tip');
+   var UIB=document.querySelector('.UIB');
+   var UIA=document.querySelector('.UIA');
+   var d=new Date();
+    d.setDate(d.getDate()+7);
+   //console.log(d);
+   //设置cookie
+   submitBtn.addEventListener('click', function () {
+       //清除用户名前面空格
+        username=t.trim(username.value);
+       //判断用户名不为空
+       if(username.length>0){
+           //选中七天免登录
+           if(choice.checked){
+               t.setCookie('username',username,d);
+               //否则不选七天免登录
+           }else {
+               t.setCookie('username',username);
+           }
+           UIA.style.display='none';
+           UIB.style.display='block';
+           member.innerHTML= t.getCookie('username');
+           logout.innerHTML='注销';
+       }else {
+           tip.innerHTML='*输入用户名';
+           return false;
+       }
+   });
+   //清楚cookie
+   logout.addEventListener('click', function () {
+       t.unsetCookie('username');
+       UIA.style.display='block';
+       UIB.style.display='none';
+   });
+   //判断cookie
+   if(t.getCookie('username')){
+       UIA.style.display='none';
+       UIB.style.display='block';
+       member.innerHTML= t.getCookie('username');
+       logout.innerHTML='注销';
+   }
+
+
+</script>
+<!--<script>
+    /*   var bj="newyork";
+     var str="shanghai;beijing;newyork;";
+     /!* var bb=str.split(';');
+     for(var i=0;i<bb.length;i++){
+     if(bb[i]==bj){
+     document.write(bb[i]);
+     }
+     }*!/
+     var strStart=str.indexOf(bj);
+     var strEnd=str.indexOf(';',strStrat);
+     document.write(str.slice(strStart,strEnd));*/
+   /* var bj = 'shanghai';
+    bj = bj + '=';
+    var str = "beijing=one;shanghai=two;newYork=three";
+    var strStart = str.indexOf(bj);
+    var strEnd = str.indexOf(';', strStart);
+    if (strEnd == -1) {
+        strEnd = str.length;
+    }
+    document.write(str.substring(strStart + bj.length, strEnd));*/
+  //  t.setCookie('username','tom');
+   // document.write(t.getCookie('username'));
+    
+</script>-->
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片缩放大小</title>
+    <style>
+        div {
+            margin: 50px 30%;
+        }
+
+        input {
+            margin: 0 10%;
+        }
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script>
+        var j = 1;
+        $(function () {
+            $("input:first").click(function () {
+                var big={width:"+=5px",height:"+=5px"};
+                $("img").css(big);
+             /*   var h = $("p>img").attr("style");
+                h1 = h.substring(8, 11);
+                var w = $("p>img").attr("style");
+                w1 = w.slice(-6, -3);
+                for (i = 1; i < 50; i++) {
+                    if (i == j) {
+                        $("p>img")[0].style.height = parseInt(h1) + 5  + "px";
+                        $("p>img")[0].style.width = parseInt(w1) + 5  + "px";
+                    }
+                }
+                j++;*/
+            });
+            $("input:last").click(function () {
+                var h = $("p>img").attr("style");
+                h1 = h.substring(8, 11);
+                var w = $("p>img").attr("style");
+                w1 = w.slice(-6, -3);
+                for (i = 1; i < 50; i++) {
+                    if (i == j) {
+                        $("p>img")[0].style.height = parseInt(h1) - 5  + "px";
+                        $("p>img")[0].style.width = parseInt(w1) - 5  + "px";
+                    }
+                }
+                j++;
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <p><img src="box.png" alt="" style="height: 300px;width: 320px;"></p>
+    <input type="button" value="放大">
+    <input type="button" value="缩小">
+</div>
+</body>
+</html>

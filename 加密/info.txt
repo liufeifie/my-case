@@ -1,0 +1,6 @@
+//JS base64解密<=>PHP base64解密
+base64_decode(必须是字符串)
+
+
+//JS base64加密<=>PHP base64加密
+base64_encode(必须是字符串)

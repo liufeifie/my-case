@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./WdatePicker.js"></script>
+</head>
+<body>
+<div>
+    <p>示例4-2-1 只能选择今天以前的日期(包括今天)</p>
+    <input id="d421" class="Wdate" type="text" onfocus="WdatePicker({skin:'whyGreen',maxDate:'%y-%M-%d'})"/>
+
+    <p>示例4-2-2 使用了运算表达式只能选择今天以后的日期(不包括今天)</p>
+    <input id="d422" class="Wdate" type="text" onfocus="WdatePicker({minDate:'%y-%M-#{%d+1}'})"/>
+
+    <p>示例4-2-3 只能选择本月的日期1号至本月最后一天</p>
+    <input id="d423" class="Wdate" type="text" onfocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld'})"/>
+
+    <p>示例4-2-4 只能选择今天7:00:00至明天21:00:00的日期</p>
+    <input id="d424" class="Wdate" type="text" onfocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-%d 7:00:00',maxDate:'%y-%M-#{%d+1} 21:00:00'})"/>
+
+    <p>示例4-2-5 使用了运算表达式只能选择 20小时前至 30小时后的日期</p>
+    <input id="d425" class="Wdate" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'%y-%M-%d #{%H-20}:%m:%s',maxDate:'%y-%M-%d #{%H+30}:%m:%s'})"/>
+</div>
+<div>
+   <p>
+       3 . 脚本自定义限制<br>
+       注意:日期格式必须与 realDateFmt 和 realTimeFmt 一致<br>
+
+       系统提供了$dp.$D和$dp.$DV这两个API来辅助你进行日期运算,此外你还可以通过在 #F{} 中填入你自定义的脚本,做任何你想做的日期限制<br>
+
+       示例4-3-1 前面的日期不能大于后面的日期且两个日期都不能大于 2020-10-01<br>
+       合同有效期从  到<br>
+   </p>
+    <input id="d4311" class="Wdate" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})"/>
+    <input id="d4312" class="Wdate" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})"/>
+
+   <p>
+       注意:<br>
+       两个日期的日期格式必须相同<br>
+
+       $dp.$ 相当于 document.getElementById 函数.<br>
+       那么为什么里面的 ' 使用 \' 呢? 那是因为 " 和 ' 都被外围的函数使用了,故使用转义符 \ ,否则会提示JS语法错误.<br>
+       所以您在其他地方使用时注意把 \' 改成 " 或者 ' 来使用.<br>
+
+       #F{$dp.$D(\'d4312\')||\'2020-10-01\'} 表示当 d4312 为空时, 采用 2020-10-01 的值作为最大值<br>
+
+       示例4-3-2 前面的日期+3天 不能大于 后面的日期<br>
+       日期从  到<br>
+   </p>
+    <input type="text" class="Wdate" id="d4321" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d4322\',{d:-3});}'})"/>
+    <input type="text" class="Wdate" id="d4322" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4321\',{d:3});}'})"/>
+
+   <p>
+       使用 $dp.$D 函数 可以将日期框中的值,加上定义的日期差量:<br>
+       两个参数: id={字符类型}需要处理的文本框的id值 , obj={对象类型}日期差量<br>
+
+       日期差量用法:<br>
+       属性y,M,d,H,m,s分别代表年月日时分秒<br>
+   </p>
+</div>
+
+
+
+<div style="padding-bottom: 200px;">
+    <p>参数：</p>
+    英文：<input type="text" id="d1301" class="Wdate" onfocus="WdatePicker({lang:''})">
+    中文：<input type="text" id="d1302" class="Wdate" onfocus="WdatePicker({lang:'zh-cn'})"><br>
+    年：<input type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy'})"><br>
+    年月：<input type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyyMM'})"><br>
+    年月日：<input type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyyMMdd'})"><br>
+    年月日时分秒：<input type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyyMMdd HH:mm:ss'})"><br>
+    格式化：年月日时分秒：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy年MM月dd日 HH时:mm分:ss秒'})"><br>
+    只读readonly:true：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyyMMdd HH:mm:ss',readOnly:true})"><br>
+    隐藏清空按钮：isShowClear:false：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})"><br>
+    设置今天为最小日期：minDate:new Date()：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:new Date()})"><br>
+    设置今天为最大日期：maxDate:new Date()：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:new Date()})"><br>
+    设置明天为最小日期：minDate:'%y-%M-{%d+1}'：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d+1}'})"><br>
+    只能选择本月第一天到最后一天：minDate:'%y-%M-01',maxDate:'%y-%M-%ld'：<input type="text" class="Wdate" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-01',maxDate:'%y-%M-%ld'})"><br>
+    开始日期不能大于结束日期，且都不能大于今天：开始日期-maxDate:'#F{$dp.$D(\'endDate\')||\'new Date()\'}'结束日期-minDate:'#F{$dp.$D(\'startDate\')}',maxDate:new Date()<br>
+    开始日期：<input type="text" class="Wdate" id="d1303" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'d1304\')||\'new Date()\'}'})">
+    结束日期：<input type="text" class="Wdate" id="d1304" style="width: 230px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'new Date()',minDate:'#F{$dp.$D(\'d1303\')}'})"><br>
+    显示周：<input type="text" class="Wdate" onfocus="WdatePicker({isShowWeek:true})"><br>
+</div>
+
+<a href="http://blog.csdn.net/zengxin2008/article/details/7248964#t14">链接</a>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.8.3.min.js"></script>
+    <script src="ajaxfileupload.js"></script>
+</head>
+<body>
+<input type="file" id="uploadFile" name="img" onchange="fileChange(this)">// 必须有name值
+<script>
+    function fileChange(obj) {
+        var file = obj.files[0];
+        $.ajaxFileUpload({
+            url: 'upload.php',  //上传处理程序地址。　　
+            fileElementId: 'uploadFile',  // 需要上传的文件域的ID，即<input type="file">的ID。
+            secureuri: false,  // 是否启用安全提交，默认为false。
+            dataType: 'json',  // 服务器返回的数据类型。可以为xml,script,json,html。如果不填写，jQuery会自动判断
+            data:'', //　 自定义参数。这个东西比较有用，当有数据是与上传的图片相关的时候，这个东西就要用到了。
+            type:'', //  当要提交自定义参数时，这个参数要设置成post
+            success: function (data,status) { // 提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
+                console.log('success:',data);
+            },
+            error:function (data, status, e) { //  提交失败自动执行的处理函数。
+                console.log('error:',e);
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

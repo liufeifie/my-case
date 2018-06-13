@@ -1,0 +1,27 @@
+pageCount	9	总页数
+totalData	0	数据总条数
+current	1	当前第几页
+showData	0	每页显示的条数
+prevCls	'prev'	上一页class
+nextCls	'next'	下一页class
+prevContent	'<'	上一页节点内容
+nextContent	'>'	下一页节点内容
+activeCls	'active'	当前页选中状态class名
+mode	'unfixed'	模式，unfixed不固定页码按钮数量，fixed固定数量
+count	4	mode为unfixed时显示当前选中页前后页数，mode为fixed显示页码总数
+coping	false	是否开启首页和末页，值为boolean
+isHide	false	总页数为0或1时隐藏分页控件
+keepShowPN	false	是否一直显示上一页下一页
+homePage	''	首页节点内容，默认为空
+endPage	''	尾页节点内容，默认为空
+jump	false	是否开启跳转到指定页数，值为boolean类型
+jumpIptCls	'jump-ipt'	文本框内容
+jumpBtnCls	'jump-btn'	跳转按钮class
+jumpBtn	'跳转'	跳转按钮文本内容
+callback	function(){}	回调函数，参数"index"为当前页
+api接口
+
+方法	参数	说明
+getPageCount()	无	获取总页数
+setPageCount(page)	page：页数	设置总页数
+getCurrent()	无	获取当前页

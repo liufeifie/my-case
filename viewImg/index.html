@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>封装</title>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="lrz.js"></script>
+<script type="text/javascript" src="exif.js"></script>
+<style>
+* {
+	padding:0;
+	margin:0;
+	font-family:"微软雅黑";
+}
+
+
+.box{width:200px;margin:100px auto;}
+.box a{display:block;width:120px;height:26px;margin:10px 5px;background:url(img/goods_pic_input.jpg) no-repeat;background-size: 100% 100%}
+.error{color:red;display:block;}
+
+</style>
+</head>
+<body>
+<div class="box">
+  <img src="img/goods_pic.jpg" id="goods_pic1">
+  <a href="javascript:;"></a>
+  <input type="file" name="good_pic" id="1" onChange="javascript:setImagePreview(this);" style="display:none;">
+  <span class="error">信息提示</span>
+</div>
+<script>
+  $(function(){
+      $(".box a").click(function(){
+        $(this).siblings("input").click();
+      })
+  });
+  function setImagePreview(obj){
+        var docObj=document.getElementById(obj.id);
+        var imgObjPreview=document.getElementById("goods_pic"+obj.id);
+
+        lrz(obj.files[0], {width: 400}, function(res){
+            $(obj).attr('base64', res.base64);
+            $(obj).attr('uploaded', 1);
+        });
+
+        if(obj.id == 1){
+          // $(".box").children(".error").remove();
+          //验证图片格式
+          if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(docObj.files[0]['name'])){
+            $(".error").html("图片格式必须是gif，jpg，png中的一种");
+            return false;
+          }  
+          //验证图片大小
+          if( docObj.files[0]['size'] > 1024*1024 ){
+            $(".error").html('图片不能大于1M');
+            return false;
+          }
+          //验证图片宽度、高度
+          var _URL = window.URL || window.webkitURL;
+          if ((file = obj.files[0])) {
+            img = new Image();
+            img.src = _URL.createObjectURL(file);
+            img.onload = function () {
+              if( this.width !== 600 || this.height !== 900 ){
+                $(".error").html('图片尺寸要求600x900');
+                return false;
+              }
+            };
+          }
+        }
+        
+        // //显示预览图片
+        if(docObj.files && docObj.files[0]){
+          //火狐下，直接设img属性
+          imgObjPreview.style.display = 'block';
+          imgObjPreview.style.width = '130px';
+          imgObjPreview.style.height = '130px';
+          //imgObjPreview.src = docObj.files[0].getAsDataURL();
+          
+          //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+          imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+        }
+
+      }
+</script>
+
+</body>
+</html>

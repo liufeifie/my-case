@@ -1,0 +1,17 @@
+
+
+
+<button class='J_copytext' data-copy='复制内容'>复制链接</button>
+
+// 复制
+	$.getScript('/static/js/jquery.zclip.min.js',function(){
+            $('.J_copytext').zclip({
+                path:'/static/js/ZeroClipboard.swf',
+                copy:function(){
+                    return $(this).attr('data-copy');
+                },
+                afterCopy:function(){
+                    $(this).css({'color':'red'}).text('复制成功');
+                }
+            });
+        });

@@ -1,0 +1,9 @@
+使用说明
+
+引入js文件
+<script src="js/My97DatePicker/WdatePicker.js"></script>
+input框内加入点击时间  WdatePicker() 
+<input type="text" onclick="WdatePicker()">
+
+
+onclick="WdatePicker({minDate:'<?php echo date("Y-m-d");?>',dateFmt:'yyyy-MM-dd HH:mm:ss'})"

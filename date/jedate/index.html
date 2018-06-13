@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="jquery-1.7.min.js"></script>
+  <script src="jquery.jedate.js"></script>
+  <link rel="stylesheet" href="jedate.css">
+  <!--[if IE 7]>
+  <style>
+    .jedatebox{width: 236px;}
+  </style>
+  <![endif]-->
+  <!--[if IE 8]>
+  <style>
+    .jedatebox{width: 236px;}
+  </style>
+  <![endif]-->
+</head>
+<body style="height: 1500px;">
+<div style="margin-top: 600px;"></div>
+<div>
+  <div style="float: left; width: 33%;">
+    <b>年</b>
+    <input type="text" id="date1" class="jedateinput" placeholder="YYYY" readonly>
+  </div>
+  <div style="float: left; width: 33%;">
+    <b>年月</b>
+    <input type="text" id="date2" class="jedateinput" placeholder="YYYY-MM" readonly>
+  </div>
+  <div style="float: left; width: 33%;">
+    <b>年月日</b>
+    <input type="text" id="date3" class="jedateinput" placeholder="YYYY-MM-DD" readonly>
+  </div>
+</div>
+<script>
+  $(function () {
+    $("#date1").jeDate({
+      fixed:true,
+      format:"YYYY"
+    })
+    $("#date2").jeDate({
+      format:"YYYY-MM"
+    })
+    $("#date3").jeDate({
+      format:"YYYY-MM-DD"
+    })
+  })
+</script>
+</body>
+</html>

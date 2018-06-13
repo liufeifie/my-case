@@ -1,0 +1,29 @@
+ Mobile  device.mobile()  手机
+    Tablet  device.tablet()   ipad 
+    iOS     device.ios()      
+    iPad    device.ipad()  
+    iPhone  device.iphone()  
+    iPod    device.ipod()  
+    Android device.android()  
+    Android Phone       device.androidPhone()  
+    Android Tablet      device.androidTablet()  
+    BlackBerry          device.blackberry()  
+    BlackBerry Phone    device.blackberryPhone()  
+    BlackBerry Tablet   device.blackberryTablet()  
+    Windows             device.windows()  
+    Windows Phone       device.windowsPhone()  
+    Windows Tablet      device.windowsTablet()  
+    Firefox OS          device.fxos()  
+    Firefox OS Phone    device.fxosPhone()  
+    Firefox OS Tablet   device.fxosTablet()  
+  
+Orientation JavaScript Method  
+    Landscape   device.landscape()  
+    Portrait    device.portrait()  
+	
+	
+	
+<script src="style/js/device.js"></script>  
+<script>  
+alert(device.mobile())  //返回true, false，来判断设备  
+</script>  

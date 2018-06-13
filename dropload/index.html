@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/dropload.css" />
+		<!--<script src="https://unpkg.com/vue"></script>-->
+	</head>
+
+	<body>
+		<div id="app">
+			<!--<div class="pages-view view">-->
+			<div class="header_bar">
+				<h1 class="title">
+					<a href="#/page/home">豆瓣</a>
+				</h1>
+				<ul class="nav">
+					<li>
+						<a href="javascript:;" style="color: rgb(42, 184, 204);">电影</a>
+					</li>
+					<li>
+						<a href="javascript:;" style="color: rgb(35, 132, 232);">图书</a>
+					</li>
+					<li>
+						<a href="javascript:;" style="color: rgb(159, 120, 96);">广播</a>
+					</li>
+					<li>
+						<a href="javascript:;" style="color: rgb(228, 168, 19);">小组</a>
+					</li>
+				</ul>
+			</div>
+			<div class="home_view has_header">
+				<div class="sub_nav">
+					<div class="quinav">
+						<ul class="qiu_nav">
+							<li>
+								<a href="javascript:;">影院热映</a>
+							</li>
+							<li>
+								<a href="javascript:;">欧美新碟帮</a>
+							</li>
+							<li>
+								<a href="javascript:;">注册账号</a>
+							</li>
+							<li>
+								<a href="javascript:;">登录豆瓣</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!--下拉 上拉 刷新-->
+			<div class="inner">
+				<div class="list">
+					<a href="javascript:;" class="thumnail">
+						<div class="content">
+							<img src="img/1.jpg">
+							<h3>鸟巢米开朗基罗国际艺术展</h3>
+							<p>米开朗基罗堪称意大利复兴时期艺术的最高典范，这位艺术巨擎</p>
+						</div>
+						<div class="author">
+							<span class="name">展览</span>
+						</div>
+					</a>
+					<a href="javascript:;" class="thumnail">
+						<div class="content">
+							<img src="img/2.jpg">
+							<h3>鸟巢米开朗基罗国际艺术展</h3>
+							<p>米开朗基罗堪称意大利复兴时期艺术的最高典范，这位艺术巨擎</p>
+						</div>
+						<div class="author">
+							<span class="name">展览</span>
+						</div>
+					</a>
+					<a href="javascript:;" class="thumnail">
+						<div class="content">
+							<img src="img/3.jpg">
+							<h3>鸟巢米开朗基罗国际艺术展</h3>
+							<p>米开朗基罗堪称意大利复兴时期艺术的最高典范，这位艺术巨擎</p>
+						</div>
+						<div class="author">
+							<span class="name">展览</span>
+						</div>
+					</a>
+					<a href="javascript:;" class="thumnail">
+						<div class="content">
+							<img src="img/3.jpg">
+							<h3>鸟巢米开朗基罗国际艺术展</h3>
+							<p>米开朗基罗堪称意大利复兴时期艺术的最高典范，这位艺术巨擎</p>
+						</div>
+						<div class="author">
+							<span class="name">展览</span>
+						</div>
+					</a>
+					<a href="javascript:;" class="thumnail">
+						<div class="content">
+							<img src="img/3.jpg">
+							<h3>鸟巢米开朗基罗国际艺术展</h3>
+							<p>米开朗基罗堪称意大利复兴时期艺术的最高典范，这位艺术巨擎</p>
+						</div>
+						<div class="author">
+							<span class="name">展览</span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!--</div>-->
+		</div>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/dropload.min.js"></script>
+		<script>
+			$(function() {
+				var dropload = $(".inner").dropload({
+					domUp: {
+						domClass: 'dropload-up',
+						domRefresh: '<div class="dropload-refresh">↓下拉刷新</div>',
+						domUpdate: '<div class="dropload-update">↑释放更新</div>',
+						domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+					},
+					domDown: {
+						domClass: 'dropload-down',
+						domRefresh: '<div class="dropload-refresh">↑上拉加载更多</div>',
+						domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+						domNoData: '<div class="dropload-noData">暂无数据</div>'
+					},
+					loadUpFn: function(me) {
+						$.ajax({
+							type: 'GET',
+							url: 'json/update.json',
+							dataType: 'json',
+							success: function(data) {
+								console.log(data);
+								var result = '';
+								for(var i = 0; i < data.lists.length; i++) {
+									result = '<a href="javascript:;" class="thumnail">' +
+										'<div class="content">' +
+										'<img src="' + data.lists[i].pic + '">' +
+										'<h3>' + data.lists[i].title + '</h3>' +
+										'<p>' + data.lists[i].date + '</p>' +
+										'</div>' +
+										'<div class="author">' +
+										'<span class="name">展览</span>' +
+										'</div>' +
+										'</a>'
+								}
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									$('.list').append(result);
+									// 每次数据加载完，必须重置
+									dropload.resetload();
+								}, 1000);
+							},
+							error: function(xhr, type) {
+								alert('Ajax error!');
+								// 即使加载出错，也得重置
+								dropload.resetload();
+							}
+						});
+					},
+					loadDownFn: function(me) {
+						$.ajax({
+							type: 'GET',
+							url: 'json/more.json',
+							dataType: 'json',
+							success: function(data) {
+								var result = '';
+								for(var i = 0; i < data.lists.length; i++) {
+									result = '<a href="javascript:;" class="thumnail">' +
+										'<div class="content">' +
+										'<img src="' + data.lists[i].pic + '">' +
+										'<h3>' + data.lists[i].title + '</h3>' +
+										'<p>' + data.lists[i].date + '</p>' +
+										'</div>' +
+										'<div class="author">' +
+										'<span class="name">展览</span>' +
+										'</div>' +
+										'</a>'
+								}
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									$('.list').append(result);
+									// 每次数据加载完，必须重置
+									dropload.resetload();
+								}, 1000);
+							},
+							error: function(xhr, type) {
+								alert('Ajax error!');
+								// 即使加载出错，也得重置
+								dropload.resetload();
+							}
+						});
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

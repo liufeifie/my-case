@@ -1,0 +1,28 @@
+/* 
+ *@desc 弹出框样式
+ *@date 2016-7-6
+ *@auth Du Xianghui
+ */ 
+.alert-bg{width: 100%;height: 1000px;position: fixed;cursor: wait;z-index: 1200;top: 0;left: 0;filter:alpha(opacity=50);opacity: 0.5;background: #000;}
+.show-error{position: fixed;top: 50%;z-index: 2000;border: 1px solid #bfbfbf;color: #000;left: 50%;width: 371px;margin-left: -186px;height: 233px;background: #fff;border-radius: 10px;margin-top:-118px;}
+.show-error-top{ min-height: 20px; color:#000;background-color:#FFF; padding:15px;}
+.show-error-btn{font-size: 12px;color: #393939;min-height: 73px;padding: 53px 0px 10px 10px;border-top: 1px solid #e4e9ee;overflow: hidden;text-align: center;}
+.error-btn{color:#fff; font-size:12px; padding:0px 18px;text-align:center; cursor:pointer; height:42px; margin-top:15px; float:right; margin-right:13px; line-height:42px; background-color:#e1002a;}
+.show_ospan{line-height: 30px;}
+/*.show-border-radius{border-bottom-left-radius:5px; border-bottom-right-radius:5px;}*/
+/*确认取消*/
+.error-btn1{color:#fff; font-size:12px; padding:0 18px;text-align:center; cursor:pointer; height:42px; margin-top:15px; float:right; margin-right:13px; line-height:42px; background-color:#abbac3}
+/*营业提示*/
+.show-error-btnbg{background-color:#e4e9ee;}
+.error-top-left{font-size:18px;/*float:left;*/font-size: 16px; font-weight: bolder; color: #e63140;}
+.error-top-right{width:10px;height:10px;font-size:25px; cursor:pointer;}
+.error-top-right img{width: 14px;position: absolute;top: 16px;right:10px;}
+.error-btn2{height: 42px;line-height: 42px;font-size: 14px;float: none;width: 70px;padding: 0px 12px;font-size: 14px;margin: auto;border-radius: 4px; margin-top: 44px;}
+.show-error-top1{min-height: 20px; border-top-left-radius:10px; border-top-right-radius:10px;line-height: 40px; color:#e63140;background-color:#fff;text-align: center;}
+.error-btn3{color:#fff; border-radius:5px; font-size:12px; padding:0px 18px;text-align:center; cursor:pointer; height:42px; margin-top:15px; float:right; margin-right:13px; line-height:42px; background-color:#e1002a;}
+.error-btn4{margin-right:116px;}
+/*微信支付弹出框*/
+.wx-pay{margin:auto;width:530px;}
+.wx-pay img{width:200px; height:200px; margin:auto; display:block;}
+.wx-pay-price{text-align:center; font-size:16px; height:40px; line-height:40px; border-bottom:1px solid #CCC; width:80%; margin:auto; margin-bottom:10px;}
+.wx-pay-price span{ color:red; font-weight:bold; font-size:18px;}

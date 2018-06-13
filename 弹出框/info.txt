@@ -1,0 +1,7 @@
+引入css文件与js文件
+<link rel="stylesheet" href="css/alertjs.css">
+<script src="js/alertjs.js"></script>
+
+
+调用：alert_div_new('弹出框','取消','','https://www.baidu.com',function () {
+           },'c');方法

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="jquery-1.7.min.js"></script>
+</head>
+<body>
+<input type="text" placeholder="测试测试" value="111111">
+<script>
+  /*
+ * jQuery placeholder, fix for IE6,7,8,9
+ * @author byh
+ */
+  var JPlaceHolder = {
+    //检测
+    _check : function(){
+      return 'placeholder' in document.createElement('input');
+    },
+    //初始化
+    init : function(){
+      if(!this._check()){
+        this.fix();
+      }
+    },
+    //修复
+    fix : function(){
+      jQuery(':input[placeholder]').each(function(index, element) {
+        var self = $(this), txt = self.attr('placeholder');
+        self.wrap($('<div></div>').css({position:'relative', zoom:'1', border:'none', background:'none', padding:'none', margin:'none'}));
+        var pos = self.position(), h = self.outerHeight(true) + 'px', paddingleft = self.css('padding-left');
+        console.log(pos)
+        pos.left = parseInt(pos.left) + 'px'
+        pos.top = parseInt(pos.top) + 'px'
+        var css = {'font-size': '13px', position:'absolute', left:pos.left, top:pos.top, height:h, 'line-height':h, paddingLeft:paddingleft, color:'#aaa'}
+        // css = "font-size: 13px;position: absolute; left: "+pos.left+"px; top: " + pos.top+"px; height: " + h + 'px;line-height: ' + h + "px;padding-left" + paddingleft +"px;color:#aaa;"
+        //var holder = $('<span style="'+css+'"></span>').text(txt).appendTo(self.parent());
+        var holder = $('<span></span>').text(txt).css(css).appendTo(self.parent());
+        self.focusin(function(e) {
+          holder.hide();
+        }).focusout(function(e) {
+          if(!self.val()){
+            holder.show();
+          }
+        });
+        holder.click(function(e) {
+          holder.hide();
+          self.focus();
+        });
+        if (self.val()) {
+          holder.hide();
+        }
+      });
+    }
+  };
+  //执行
+  jQuery(function(){
+    JPlaceHolder.init();
+  });
+</script>
+</body>
+</html>

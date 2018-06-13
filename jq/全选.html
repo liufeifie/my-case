@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格隔行变色</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 700px;
+            margin: 50px auto;
+            text-align: center;
+        }
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script>
+        $(function () {
+            $("tr:first").css("background-color", "yellow");
+            $("tr:odd").css("backgroundColor", "lightgreen");
+            $("tr:even:not(:first)").css("backgroundColor", "lightblue");
+             $("input:first").click(function(){
+             $("input:not(:first)").prop("checked", function () {
+             return $("input:first").prop("checked");
+             });
+             });
+        });
+
+
+    </script>
+</head>
+<body>
+<table border="1">
+    <caption>手机品牌</caption>
+    <tr>
+        <td><input type="checkbox" class="aa" ></td>
+        <td>序号</td>
+        <td>名称</td>
+        <td>价格</td>
+        <td>数量</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" class="bb"></td>
+        <td>1</td>
+        <td>apple手机</td>
+        <td>5000</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>2</td>
+        <td>htc手机</td>
+        <td>3000</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>3</td>
+        <td>诺基亚手机</td>
+        <td>2000</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>4</td>
+        <td>三星手机</td>
+        <td>4000</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>5</td>
+        <td>黑莓手机</td>
+        <td>1000</td>
+        <td>15</td>
+    </tr>
+</table>
+<script>
+   /* function show() {
+
+         $(".bb").prop("checked", function () {
+         return $(".aa").prop("checked");
+         })
+        /!*if ($(".aa").attr("checked", true)) {
+            $(".bb").attr("checked", true);
+        }*!/
+
+    }*/
+
+</script>
+</body>
+</html>

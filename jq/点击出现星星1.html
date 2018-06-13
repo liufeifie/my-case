@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+            height: 799px;
+        }
+    </style>
+    <script>
+        function show(event) {
+            var body=document.getElementById("body");
+           var x0 = window.innerWidth;//获取页面浏览器宽
+            var  y0 = window.innerHeight;//获取页面浏览器高
+            style0="height:"+y0+"px;width:"+x0+"px;";
+            body.style=style0;//设置body页面为当前电脑打开页面的宽高
+            //创建图片
+            var img = document.createElement("img");//创建img标签
+            img.setAttribute("src", "star.png");//setAttribute设置元素属性
+            //img.src="star.png";
+            var width = Math.floor(Math.random() * (50-5)+5);//5到50之间的随机
+            var x = event.clientX-width/2;//获取鼠标点击x坐标
+            var y = event.clientY-width/2;//获取鼠标点击y坐标
+            style = "width:" + width + "px;";//设置图片宽度
+            style += "position:absolute;left:" + x + "px;top:" + y + "px;";//图片位置
+            img.setAttribute("style", style);//设置图片位置和大小
+            document.body.appendChild(img);//插入页面
+            //img.setAttribute("onmousedown","removeImg(this)");
+        }
+        /*function removeImg(obj){
+            document.body.removeChild(obj);
+        }*/
+
+    </script>
+</head>
+<body onclick="show(event)" id="body">
+
+</body>
+</html>

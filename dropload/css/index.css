@@ -1,0 +1,24 @@
+html{font-size: 62.5%;}
+*{padding:0;margin:0;}
+a{text-decoration: none;}
+ul{list-style: none;}
+#app{max-width:41.2rem;margin:0 auto;position: absolute;left: 0;top: 0;width: 100%;height: 100%;display: -webkit-box;
+			display: -webkit-flex;display: -ms-flexbox;display: flex;-ms-flex-direction: column;-webkit-box-orient: vertical;box-orient: vertical;-webkit-flex-direction: column;flex-direction: column;}
+.header_bar{position: fixed;top:0;left:0;right:0;display:flex;align-items: center;height:4.8rem;padding: 0 1.8rem;background:#fff;border-bottom:1px solid #f3f3f3;z-index:5;}
+.header_bar .title{flex:1;max-width: 4.6rem;max-height:2.2rem;margin-right:1.5rem;font-size: 2rem;}
+.nav{display:flex;flex:1;    justify-content: flex-end;}
+.inner{-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;background-color: #fff;overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;}
+.nav li{display:inline-block;font-size: 1.6rem;margin-right:1.2rem;}
+.has_header{margin-top:4.8rem;}
+.sub_nav{margin:0 1.8rem;padding-top:0.2rem;}
+.quinav ul{overflow: hidden;margin:1rem 0 0 0;padding-top:0.6rem;}
+.quinav ul li{float:left;width:50%;padding:0.3rem;box-sizing: border-box;font-size: 1.5rem;}
+.quinav ul a{display:block;max-width:100%;padding:1.2rem 0;line-height: 2rem;text-align: center;background:#f6f6f6;color:#494949;border-radius:0.2rem;overflow: hidden;text-overflow: ellipsis;white-space: norw
+}
+.list .thumnail{display:block;position: relative;padding:2.5rem 1.8rem 2.5rem 0;margin-left:1.8rem;border-bottom: 0.1rem solid #ddd;}
+.list .thumnail .content{overflow: hidden;margin-bottom:1rem;}
+.list .thumnail img{float:right;width:25.6%;height:8.678rem;margin-left:2.5rem;}
+.list .thumnail h3{margin-top:0;margin-bottom:0.6rem;line-height: 1.41;text-align:justify;font-size: 1.7rem;font-weight: 500;color:#494949;}
+.list .thumnail p{line-height: 1.5;text-align: justify;color: #aaa;font-size: 1.2rem;overflow: hidden;}
+.list .thumnail .name{font-size: 1.2rem;color:#ccc;}

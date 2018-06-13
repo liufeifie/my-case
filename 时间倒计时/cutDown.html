@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="cutdown.js"></script>
+  <script src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<div id='time'>
+
+</div>
+<script>
+  var s=7200;
+  countDown($('#time'),s,function (d,h,h1,h2,min,min1,min2,sec,sec1,sec2,h_double,min_double,sec_double) {
+    console.log(h_double);
+  },function () {
+
+  })
+
+</script>
+</body>
+</html>
